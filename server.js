@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 dotenv.config();
@@ -12,6 +14,10 @@ dotenv.config();
 // app.get('/login', (req, res)=>{
 //     res.send("This is login page");
 // })
+
+// Fix __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // production script 
 app.use(express.static("./frontend/build"))
